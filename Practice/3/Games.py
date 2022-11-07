@@ -40,6 +40,9 @@ def game(lives,k):
             print("Ошибочка, у вас отнимается жизнь")
             lives -= 1
             continue
+    if lives==0:
+        print("Игра окончена, у Вас закончились жизни")
+        return end()
 def regame(relives,k):
     print("Вы прошли данный тур, если хотите продолжить, напишите [1] \n [2] Если устали, и хотите закончить")
     recont=int(input())
