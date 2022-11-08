@@ -33,8 +33,10 @@ def game(lives,k):
         if check in slovox:
             print("Такая буква есть!")
             shifrs=list(shifrx)
-            shifrs[slovox.index(check)]=check
-            shifrx=''.join(shifrs)
+            x = [i for i, ltr in enumerate(slovox) if ltr == check]
+            for i in x:
+                shifrs[i]=check
+                shifrx=''.join(shifrs)
             continue
         if check not in slovox:
             print("Ошибочка, у вас отнимается жизнь")
