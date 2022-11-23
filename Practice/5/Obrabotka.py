@@ -1,16 +1,17 @@
 def open_file(filename: str):
-    opened = False
     try:
-        file = open(filename, "r")
-        opened = True
+        file = open(filename, "r",encoding="utf-8")
         count = int(file.readline())
-        return [int(x) for x in [file.readline() for _ in range(count)]]
+        numbers_list: list = file.read().splitlines()
+        if len(numbers_list) != count:
+            raise Exception
+        numbers_list = [int(numbers_list[i]) for i in range(0, count)]
+        return numbers_list
     except FileNotFoundError:
-        print("Такого файла нет")
+        return("Такого файла нет")
     except ValueError:
-        print(f"В файле обнаружены посторонние символы")
-    except Exception as e:
-        print(f"Кхм... Ошибка не опознана {type(e)}, {e=}")
+        return(f"В файле обнаружены посторонние символы")
+    except Exception:
+        return(f"Количество не совпадает")
     finally:
-        if opened:
-            file.close()
+        file.close()
